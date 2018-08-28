@@ -1,27 +1,26 @@
 
 [Source](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0 "Permalink to Master the JavaScript Interview: What is Functional Programming?")
 
-# Master the JavaScript Interview: What is Functional Programming?
+# Làm chủ cuộc phỏng vấn JavaScript: Lập trình hướng chức năng là gì?
 
 ![][1]
 
-Structure Synth — Orihaus (CC BY 2.0)
+Cấu trúc Synth — Orihaus (CC BY 2.0)
 
-> "Master the JavaScript Interview" is a series of posts designed to prepare candidates for common questions they are likely to encounter when applying for a mid to senior-level JavaScript position. These are questions I frequently use in real interviews.
+> "Làm chủ cuộc phỏng vấn JavaScript" là một loạt các bài viết được thiết kế để chuẩn bị cho các ứng cử viên các câu hỏi phổ biến mà họ có khả năng gặp phải khi ứng tuyển vị trí JavaScript từ level mid đến senior-level. Đây là những câu hỏi tôi thường xuyên sử dụng trong các cuộc phỏng vấn thực tế.
 
-Functional programming has become a really hot topic in the JavaScript world. Just a few years ago, few JavaScript programmers even knew what functional programming is, but every large application codebase I've seen in the past 3 years makes heavy use of functional programming ideas.
+Lập trình hướng chức năng đã trở thành một chủ đề thực sự nóng trong thế giới JavaScript. Chỉ vài năm trước, vài lập trình viên JavaScript đã biết lập trình hướng chức năng là gì, nhưng tất cả codebase của ứng dụng lớn mà tôi đã thấy trong 3 năm qua đều sử dụng nhiều ý tưởng lập trình hướng chức năng.
 
-**Functional programming** (often abbreviated FP) is the process of building software by composing **pure functions**, avoiding **shared state,** **mutable data, **and **side-effects**. Functional programming is **declarative** rather than **imperative**, and application state flows through pure functions. Contrast with object oriented programming, where application state is usually shared and colocated with methods in objects.
+**Lập trình hướng chức năng** (thường được viết tắt là FP) là quá trình xây dựng phần mềm bằng cách tạo **hàm thuần túy**, tránh **trạng thái chia sẻ,** **dữ liệu có thể thay đổi,** và **tác dụng phụ**. Lập trình hướng chức năng là **declarative** thay vì **imperative**, và trạng thái ứng dụng truyền qua các hàm thuần túy. Tương phản với lập trình hướng đối tượng, nơi mà trạng thái ứng dụng thường được chia sẻ và được colocated với các phương thức trong đối tượng.
 
-Functional programming is a **programming paradigm**, meaning that it is a way of thinking about software construction based on some fundamental, defining principles (listed above). Other examples of programming paradigms include object oriented programming and procedural programming.
+Lập trình hướng chức năng là **một mô hình lập trình**, có nghĩa rằng nó là một cách suy nghĩ về xây dựng phần mềm dựa trên một số nguyên tắc cơ bản, xác định (được liệt kê ở trên). Các ví dụ khác về mô hình lập trình bao gồm lập trình hướng đối tượng và lập trình hướng thủ tục.
 
-Functional code tends to be more concise, more predictable, and easier to test than imperative or object oriented code — but if you're unfamiliar with it and the common patterns associated with it, functional code can also seem a lot more dense, and the related literature can be impenetrable to newcomers.
+Code hướng chức năng có xu hướng ngắn gọn hơn, dễ dự đoán hơn và dễ kiểm tra hơn code imperative hoặc đối tượng - nhưng nếu bạn không quen với nó và các mẫu phổ biến liên quan đến nó, code hướng chức năng cũng có thể dày đặc hơn và tài liệu liên quan có thể khó học đối với người mới.
 
-If you start googling functional programming terms, you're going to quickly hit a brick wall of academic lingo that can be very intimidating for beginners. To say it has a learning curve is a serious understatement. But if you've been programming in JavaScript for a while, chances are good that you've used a lot of functional programming concepts & utilities in your real software.
+Nếu bạn bắt đầu tra google thuật ngữ lập trình hướng chức năng, bạn sẽ nhanh chóng gặp phải các trở ngại của một bức tường của ngôn ngữ học thuật có thể rất đáng sợ cho người mới bắt đầu. Nói rằng nó có một đường cong học tập là nói dối. Nhưng nếu bạn đã lập trình JavaScript trong một thời gian, rất có thể là bạn đã sử dụng rất nhiều khái niệm và tiện ích lập trình hướng chức năng trong phần mềm thực têd của bạn.
+> Đừng để tất cả những từ ngữ mới làm bạn sợ hãi. Nó dễ hơn rất nhiều .
 
-> Don't let all the new words scare you away. It's a lot easier than it sounds.
-
-The hardest part is wrapping your head around all the unfamiliar vocabulary. There are a lot of ideas in the innocent looking definition above which all need to be understood before you can begin to grasp the meaning of functional programming:
+Phần khó nhất là bạn luôn bị bao vây bởi các từ ngữ không quen thuộc. Có rất nhiều ý tưởng trong định nghĩa trong sáng ở trên mà tất cả mọi thứ cần phải được hiểu trước khi bạn có thể bắt đầu nắm bắt ý nghĩa của lập trình hướng chức nămh:
 
 * Pure functions
 * Function composition
@@ -29,53 +28,53 @@ The hardest part is wrapping your head around all the unfamiliar vocabulary. The
 * Avoid mutating state
 * Avoid side effects
 
-In other words, if you want to know what functional programming means in practice, you have to start with an understanding of those core concepts.
+Nói cách khác, nếu bạn muốn biết ý nghĩa  lập trình hướng chức năng trong thực tế, bạn phải bắt đầu với một sự hiểu biết về những khái niệm cốt lõi đó.
 
-A **pure function** is a function which:
-* Given the same inputs, always returns the same output, and
-* Has no side-effects
+A **pure function** là một hàm mà:
+* Với cùng các yếu tố đầu vào, luôn trả về cùng một đầu ra
+* Không bị ảnh hướng bên ngoài
 
-Pure functions have lots of properties that are important in functional programming, including **referential transparency** (you can replace a function call with its resulting value without changing the meaning of the program). Read ["What is a Pure Function?"][2] for more details.
+Các hàm thuần túy có rất nhiều thuộc tính quan trọng trong lập trình huowngcs chức năng, bao gồm **tính minh bạch tham chiếu** (bạn có thể thay thế một hàm gọi với giá trị kết quả của nó mà không thay đổi ý nghĩa của chương trình). Đọc ["Chức năng thuần túy là gì?"] [2] để biết thêm chi tiết.
 
-**Function composition **is the process of combining two or more functions in order to produce a new function or perform some computation. For example, the composition `f . g` (the dot means "composed with") is equivalent to `f(g(x))` in JavaScript. Understanding function composition is an important step towards understanding how software is constructed using the functional programming. Read ["What is Function Composition?"][3] for more.
+**Function composition** là quá trình kết hợp hai hoặc nhiều chức năng để tạo ra một chức năng mới hoặc thực hiện một số tính toán. Ví dụ, thành phần `f. g` (dấu chấm có nghĩa là "hợp với") tương đương với `f (g (x))` trong JavaScript. Hiểu biết về function composition là một bước quan trọng hướng tới sự hiểu biết cách phần mềm được xây dựng bằng cách sử dụng lập trình hướng chức năng. Đọc ["Thành phần chức năng là gì?"] [3] để biết thêm.
 
 ### Shared State
 
-**Shared state** is any variable, object, or memory space that exists in a shared scope, or as the property of an object being passed between scopes. A shared scope can include global scope or closure scopes. Often, in object oriented programming, objects are shared between scopes by adding properties to other objects.
+**Shared State** là bất kỳ biến, đối tượng hoặc không gian bộ nhớ nào tồn tại trong một phạm vi chia sẻ hoặc là thuộc tính của một đối tượng được truyền giữa các phạm vi. Một phạm vi chia sẻ có thể bao gồm phạm vi toàn cục hoặc đóng kín. Thông thường, trong lập trình hướng đối tượng, các đối tượng được chia sẻ giữa các phạm vi bằng cách thêm các thuộc tính cho các đối tượng khác.
 
-For example, a computer game might have a master game object, with characters and game items stored as properties owned by that object. Functional programming avoids shared state — instead relying on immutable data structures and pure calculations to derive new data from existing data. For more details on how functional software might handle application state, see ["10 Tips for Better Redux Architecture"][4].
+Ví dụ, một trò chơi máy tính có thể có một đối tượng trò chơi chính, với các nhân vật và các mục trò chơi được lưu trữ dưới dạng các thuộc tính thuộc sở hữu của đối tượng đó. Lập trình hướng chức năng tránh trạng thái chia sẻ - thay vào đó dựa vào cấu trúc dữ liệu không thay đổi và tính toán thuần túy để lấy dữ liệu mới từ dữ liệu hiện có. Để biết thêm chi tiết về cách phần mềm chức năng có thể xử lý trạng thái ứng dụng, hãy xem ["10 mẹo để có cấu trúc Redux tốt hơn"] [4].
 
-The problem with shared state is that in order to understand the effects of a function, you have to know the entire history of every shared variable that the function uses or affects.
+Vấn đề với trạng thái chia sẻ là để hiểu tác động của một hàm, bạn phải biết toàn bộ lịch sử của mọi biến chia sẻ mà hàm sử dụng hoặc ảnh hưởng.
 
-Imagine you have a user object which needs saving. Your `saveUser()` function makes a request to an API on the server. While that's happening, the user changes their profile picture with `updateAvatar()` and triggers another `saveUser()` request. On save, the server sends back a canonical user object that should replace whatever is in memory in order to sync up with changes that happen on the server or in response to other API calls.
+Hãy tưởng tượng bạn có một đối tượng người dùng cần lưu. Hàm `saveUser ()` của bạn tạo một yêu cầu tới một API trên máy chủ. Trong khi điều đó xảy ra, người dùng thay đổi hình ảnh hồ sơ của họ bằng `updateAvatar ()` và kích hoạt một yêu cầu `saveUser ()` khác. Khi lưu, máy chủ sẽ gửi lại một đối tượng người dùng chuẩn để thay thế bất kỳ thứ gì trong bộ nhớ để đồng bộ hóa với các thay đổi xảy ra trên máy chủ hoặc để đáp ứng các cuộc gọi API khác.
 
-Unfortunately, the second response gets received before the first response, so when the first (now outdated) response gets returned, the new profile pic gets wiped out in memory and replaced with the old one. This is an example of a race condition — a very common bug associated with shared state.
+Thật không may, phản hồi thứ hai nhận được trước phản hồi đầu tiên, vì vậy khi phản hồi đầu tiên (hiện đã lỗi thời) được trả về, ảnh hồ sơ mới bị xóa trong bộ nhớ và được thay thế bằng ảnh cũ. Đây là một ví dụ về điều kiện chạy đua - một lỗi rất phổ biến liên quan đến trạng thái được chia sẻ.
 
-Another common problem associated with shared state is that changing the order in which functions are called can cause a cascade of failures because functions which act on shared state are timing dependent:
+Một vấn đề phổ biến khác liên quan đến trạng thái chia sẻ là việc thay đổi thứ tự mà các hàm được gọi có thể gây ra một loạt các lỗi vì các hàm hoạt động trên trạng thái chia sẻ phụ thuộc vào thời gian:
 
-Timing dependency example
+Ví dụ về sự phụ thuộc thời gian:
 
-When you avoid shared state, the timing and order of function calls don't change the result of calling the function. With pure functions, given the same input, you'll always get the same output. This makes function calls completely independent of other function calls, which can radically simplify changes and refactoring. A change in one function, or the timing of a function call won't ripple out and break other parts of the program.
+Khi bạn tránh trạng thái chia sẻ, thời gian và thứ tự của các lời gọi hàm không thay đổi kết quả của việc gọi hàm. Với các hàm thuần túy, được cung cấp cùng một đầu vào, bạn sẽ luôn nhận được cùng một đầu ra. Điều này làm cho các lời gọi hàm hoàn toàn độc lập với các lời gọi hàm khác, có thể đơn giản hóa triệt để các thay đổi và tái cấu trúc. Một thay đổi trong một hàm, hoặc thời gian của một lời gọi hàm sẽ không gấp khúc và phá vỡ các phần khác của chương trình.
 
-In the example above, we use `Object.assign()` and pass in an empty object as the first parameter to copy the properties of `x` instead of mutating it in place. In this case, it would have been equivalent to simply create a new object from scratch, without `Object.assign()`, but this is a common pattern in JavaScript to create copies of existing state instead of using mutations, which we demonstrated in the first example.
+Trong ví dụ trên, chúng ta sử dụng `Object.assign ()` và truyền vào một đối tượng rỗng làm tham số đầu tiên để sao chép các thuộc tính của `x` thay vì thay đổi nó tại chỗ. Trong trường hợp này, nó sẽ tương đương với việc tạo một đối tượng mới ngay từ đầu, không có `Object.assign ()`, nhưng đây là một mẫu phổ biến trong JavaScript để tạo ra các bản sao của trạng thái hiện tại thay vì sử dụng các biến đổi, ví dụ đầu tiên.
 
-If you look closely at the `console.log()` statements in this example, you should notice something I've mentioned already: function composition. Recall from earlier, function composition looks like this: `f(g(x))`. In this case, we replace `f()` and `g()` with `x1()` and `x2()` for the composition: `x1 . x2`.
+Nếu bạn xem xét kỹ các câu lệnh `console.log ()` trong ví dụ này, bạn sẽ thấy một cái gì đó mà tôi đã đề cập: function composition. Nhớ lại từ trước, thành phần hàm trông giống như sau: `f (g (x))`. Trong trường hợp này, chúng ta thay thế `f ()` và `g ()` bằng `x1 ()` và `x2 ()` cho thành phần: `x1. x2`.
 
-Of course, if you change the order of the composition, the output will change. Order of operations still matters. `f(g(x))` is not always equal to `g(f(x))`, but what doesn't matter anymore is what happens to variables outside the function — and that's a big deal. With impure functions, it's impossible to fully understand what a function does unless you know the entire history of every variable that the function uses or affects.
+Tất nhiên, nếu bạn thay đổi thứ tự của composition, đầu ra sẽ thay đổi. Thứ tự của các hoạt động vẫn còn quan trọng. `f (g (x))` không phải lúc nào cũng bằng `g (f (x))`, nhưng những gì không quan trọng nữa là những gì xảy ra với các biến bên ngoài hàm - và đó là một vấn đề lớn. Với hàm số không tinh khiết, bạn không thể hiểu đầy đủ chức năng của một hàm trừ khi bạn biết toàn bộ lịch sử của mọi biến mà hàm sử dụng hoặc ảnh hưởng.
 
-Remove function call timing dependency, and you eliminate an entire class of potential bugs.
+Loại bỏ phụ thuộc thời gian lời gọi hàm và bạn sẽ loại bỏ toàn bộ lớp lỗi tiềm ẩn.
 
-### Immutability
+### Tính bất biến
 
-An **immutable** object is an object that can't be modified after it's created. Conversely, a **mutable** object is any object which can be modified after it's created.
+Một đối tượng **immutable** là một đối tượng không thể sửa đổi sau khi nó được tạo ra. Ngược lại, một đối tượng **mutable** là bất kỳ đối tượng nào có thể được sửa đổi sau khi nó được tạo ra.
 
-Immutability is a central concept of functional programming because without it, the data flow in your program is lossy. State history is abandoned, and strange bugs can creep into your software. For more on the significance of immutability, see ["The Dao of Immutability."][5]
+Tính bất biến là một khái niệm trung tâm về lập trình hướng chức năng bởi vì không có nó, luồng dữ liệu trong chương trình của bạn bị mất. Lịch sử trạng thái và các lỗi lạ có thể xâm nhập vào phần mềm của bạn. Để biết thêm về tầm quan trọng của bất biến, hãy xem ["Người Dao bất biến."] [5]
 
-In JavaScript, it's important not to confuse `const`, with immutability. `const` creates a variable name binding which can't be reassigned after creation. `const` does not create immutable objects. You can't change the object that the binding refers to, but you can still change the properties of the object, which means that bindings created with `const` are mutable, not immutable.
+Trong JavaScript, điều quan trọng là không nhầm lẫn `const`, với bất biến. `const` tạo ra một ràng buộc tên biến mà không thể được gán lại sau khi tạo. `const` không tạo ra các đối tượng bất biến. Bạn không thể thay đổi đối tượng mà ràng buộc đề cập đến, nhưng bạn vẫn có thể thay đổi các thuộc tính của đối tượng, có nghĩa là các ràng buộc được tạo bằng `const` là có thể thay đổi, không thay đổi.
 
-Immutable objects can't be changed at all. You can make a value truly immutable by deep freezing the object. JavaScript has a method that freezes an object one-level deep:
+Các đối tượng bất biến không thể thay đổi được. Bạn có thể làm cho một giá trị thực sự bất biến bằng cách đóng băng sâu đối tượng. JavaScript có một phương thức đóng băng một đối tượng:
 
-But frozen objects are only superficially immutable. For example, the following object is mutable:
+Nhưng các đối tượng bị đóng băng chỉ là bất biến bề ngoài. Ví dụ: đối tượng sau có thể thay đổi:
 
 As you can see, the top level primitive properties of a frozen object can't change, but any property which is also an object (including arrays, etc…) can still be mutated — so even frozen objects are not immutable unless you walk the whole object tree and freeze every object property.
 
