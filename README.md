@@ -76,63 +76,64 @@ Các đối tượng bất biến không thể thay đổi được. Bạn có t
 
 Nhưng các đối tượng bị đóng băng chỉ là bất biến bề ngoài. Ví dụ: đối tượng sau có thể thay đổi:
 
-As you can see, the top level primitive properties of a frozen object can't change, but any property which is also an object (including arrays, etc…) can still be mutated — so even frozen objects are not immutable unless you walk the whole object tree and freeze every object property.
+Như bạn có thể thấy, các thuộc tính nguyên thủy cấp cao nhất của một đối tượng bị đóng băng không thể thay đổi, nhưng bất kỳ thuộc tính nào cũng là một đối tượng (bao gồm mảng, vv…) vẫn có thể bị thay đổi - vì vậy ngay cả đối tượng bị đóng băng cũng không thay đổi trừ khi bạn duyệt toàn bộ cây đối tượng và đóng băng mọi thuộc tính đối tượng.
 
-In many functional programming languages, there are special immutable data structures called **trie data structures** (pronounced "tree") which are effectively deep frozen — meaning that no property can change, regardless of the level of the property in the object hierarchy.
+Trong nhiều ngôn ngữ lập trình chức năng, có cấu trúc dữ liệu bất biến đặc biệt gọi là **cấu trúc dữ liệu trie** (phát âm là "cây") được đóng băng sâu - nghĩa là không có thuộc tính nào có thể thay đổi, bất kể mức độ của thuộc tính trong hệ thống phân cấp đối tượng .
 
-Tries use **structural sharing** to share reference memory locations for all the parts of the object which are unchanged after an object has been copied by an operator, which uses less memory, and enables significant performance improvements for some kinds of operations.
+Các trie sử dụng **chia sẻ cấu trúc** để chia sẻ các vị trí bộ nhớ tham chiếu cho tất cả các phần của đối tượng không thay đổi sau khi đối tượng đã sao chép một toán tử, sử dụng ít bộ nhớ hơn và cho phép cải thiện hiệu suất đáng kể đối với một số loại hoạt động.
 
-For example, you can use identity comparisons at the root of an object tree for comparisons. If the identity is the same, you don't have to walk the whole tree checking for differences.
+Ví dụ, bạn có thể sử dụng so sánh nhận dạng tại gốc của cây đối tượng để so sánh. Nếu danh tính giống nhau, bạn không phải duyệt cả cây để kiểm tra sự khác biệt.
 
-There are several libraries in JavaScript which take advantage of tries, including [Immutable.js][6] and [Mori][7].
+Có một số thư viện trong JavaScript tận dụng các trie, bao gồm [Immutable.js] [6] và [Mori] [7].
 
-I have experimented with both, and tend to use Immutable.js in large projects that require significant amounts of immutable state. For more on that, see ["10 Tips for Better Redux Architecture"][4].
+Tôi đã thử nghiệm với cả hai, và có xu hướng sử dụng Immutable.js trong các dự án lớn đòi hỏi một lượng đáng kể trạng thái bất biến. Để biết thêm về điều đó, hãy xem ["10 mẹo để có cấu trúc Redux tốt hơn"] [4]
 
-### Side Effects
+### Ảnh hưởng phụ
 
-A side effect is any application state change that is observable outside the called function other than its return value. Side effects include:
+Một ảnh hưởng phụ là bất kỳ thay đổi trạng thái của ứng dụng nào mà có thể quan sát được bên ngoài hàm được gọi, ngoài giá trị trả về của nó. Các ảnh hưởng phụ bao gồm:
 
-* Modifying any external variable or object property (e.g., a global variable, or a variable in the parent function scope chain)
-* Logging to the console
-* Writing to the screen
-* Writing to a file
-* Writing to the network
-* Triggering any external process
-* Calling any other functions with side-effects
+* Sửa đổi bất kỳ biến bên ngoài hoặc thuộc tính đối tượng nào (ví dụ: biến toàn cầu hoặc biến trong chuỗi phạm vi hàm chính)
+* Đăng nhập vào bảng điều khiển
+* Viết lên màn hình
+* Viết vào một file
+* Viết vào một mạng
+* Kích hoạt bất kỳ tiến trình bên ngoài nào
+* Gọi bất kỳ hàm nào với ảnh hưởng phụ
 
-Side effects are mostly avoided in functional programming, which makes the effects of a program much easier to understand, and much easier to test.
+Ảnh hưởng phụ nên phải tránh trong lập trình hướng chức năng, làm cho hiệu quả của một chương trình dễ hiểu hơn nhiều và dễ dàng hơn nhiều để kiểm tra.
 
-Haskell and other functional languages frequently isolate and encapsulate side effects from pure functions using [**monads**][8]. The topic of monads is deep enough to write a book on, so we'll save that for later.
+Haskell và các ngôn ngữ chức năng khác thường tách biệt và đóng gói các ảnh hưởng phụ từ các hàm thuần túy bằng [**monads**] [8]. Chủ đề của các monads là đủ sâu để viết thành một cuốn sách, vì vậy chúng tôi sẽ lưu lại nó cho sau này.
 
-What you do need to know right now is that side-effect actions need to be isolated from the rest of your software. If you keep your side effects separate from the rest of your program logic, your software will be much easier to extend, refactor, debug, test, and maintain.
+Những gì bạn cần biết ngay bây giờ là các ảnh hưởng phụ cần phải được tách biệt với phần còn lại của phần mềm của bạn. Nếu bạn giữ các hiệu ứng phụ tách biệt với phần còn lại của logic chương trình, phần mềm của bạn sẽ dễ dàng hơn để mở rộng, tái cấu trúc, gỡ lỗi, kiểm tra và bảo trì.
 
-This is the reason that most front-end frameworks encourage users to manage state and component rendering in separate, loosely coupled modules.
+Đây là lý do mà hầu hết các framework front-end khuyến khích người dùng quản lý hiển thị trạng thái và thành phần trong các mô-đun riêng lẻ, tách biệt nhau.
 
-### Reusability Through Higher Order Functions
+### Khả năng tái sử dụng thông qua các chức năng bậc cao
 
-Functional programming tends to reuse a common set of functional utilities to process data. Object oriented programming tends to colocate methods and data in objects. Those colocated methods can only operate on the type of data they were designed to operate on, and often only the data contained in that specific object instance.
+Lập trình hướng chức năng có xu hướng tái sử dụng lại một tập hợp các tiện ích chức năng phổ biến để xử lý dữ liệu. Lập trình hướng đối tượng có xu hướng sắp xếp phương thức và dữ liệu trong các đối tượng. Những phương được pháp sắp xếp chỉ có thể hoạt động trên loại dữ liệu mà chúng được thiết kế để hoạt động và thường chỉ có dữ liệu chứa trong cá thể đối tượng cụ thể đó.
 
-In functional programming, any type of data is fair game. The same `map()` utility can map over objects, strings, numbers, or any other data type because it takes a function as an argument which appropriately handles the given data type. FP pulls off its generic utility trickery using **higher order functions**.
+Trong lập trình hướng chức năng, bất kỳ loại dữ liệu nào là trò chơi công bằng. Cùng một tiện ích `map ()` có thể ánh xạ đối tượng, chuỗi, số hoặc bất kỳ kiểu dữ liệu nào khác vì nó lấy hàm làm đối số xử lý thích hợp kiểu dữ liệu đã cho. FP rút ra thủ thuật tiện ích chung của nó bằng cách sử dụng **các hàm bậc cao hơn**.
 
-JavaScript has **first class functions**, which allows us to treat functions as data — assign them to variables, pass them to other functions, return them from functions, etc…
+JavaScript có **các hàm lớp đầu tiên**, cho phép chúng ta xử lý các hàm như dữ liệu - gán chúng cho các biến, chuyển chúng đến các hàm khác, trả về chúng từ các hàm, v.v.
 
-A **higher order function** is any function which takes a function as an argument, returns a function, or both. Higher order functions are often used to:
-* Abstract or isolate actions, effects, or async flow control using callback functions, promises, monads, etc…
-* Create utilities which can act on a wide variety of data types
-* Partially apply a function to its arguments or create a curried function for the purpose of reuse or function composition
-* Take a list of functions and return some composition of those input functions
+Hàm **bậc cao hơn** là bất kỳ hàm nào nhận hàm làm đối số, trả về hàm hoặc cả hai. Các hàm bậc cao thường được sử dụng để:
+
+* Tóm tắt hoặc cô lập hành động, hiệu ứng hoặc điều khiển luồng không đồng bộ bằng cách sử dụng hàm callback, promise, monad, v.v.
+* Tạo các tiện ích có thể hoạt động trên nhiều loại dữ liệu khác nhau
+* Áp dụng một phần hàm cho các đối số của nó hoặc tạo một hàm được kết hợp với mục đích sử dụng lại hoặc hàm hợp
+* Lấy danh sách các hàm và trả về một số thành phần của các hàm đầu vào đó
 
 #### Containers, Functors, Lists, and Streams
 
-A functor is something that can be mapped over. In other words, it's a container which has an interface which can be used to apply a function to the values inside it. When you see the word functor, you should think "mappable".
+Một functor là cái gì đó có thể được ánh xạ qua. Nói cách khác, nó là một container có một giao diện có thể được sử dụng để áp dụng một hàm cho các giá trị bên trong nó. Khi bạn nhìn thấy từ functor, bạn nên nghĩ rằng "có thể ánh xạ".
 
-Earlier we learned that the same `map()` utility can act on a variety of data types. It does that by lifting the mapping operation to work with a functor API. The important flow control operations used by `map()` take advantage of that interface. In the case of `Array.prototype.map()`, the container is an array, but other data structures can be functors, too — as long as they supply the mapping API.
+Trước đó chúng ta đã biết rằng cùng một tiện ích `map ()` có thể hoạt động trên nhiều kiểu dữ liệu khác nhau. Nó làm điều đó bằng cách nâng hoạt động ánh xạ để làm việc với một API functor. Các hoạt động kiểm soát lưu lượng quan trọng được sử dụng bởi `map ()` tận dụng giao diện đó. Trong trường hợp của `Array.prototype.map ()`, vùng chứa là một mảng, nhưng các cấu trúc dữ liệu khác cũng có thể là các hàm functors - miễn là chúng cung cấp API ánh xạ.
 
-Let's look at how `Array.prototype.map()` allows you to abstract the data type from the mapping utility to make `map()` usable with any data type. We'll create a simple `double()` mapping that simply multiplies any passed in values by 2:
+Hãy xem cách `Array.prototype.map ()` cho phép bạn trừu tượng kiểu dữ liệu từ tiện ích ánh xạ để làm cho `map ()` có thể sử dụng được với bất kỳ kiểu dữ liệu nào. Chúng ta sẽ tạo một ánh xạ `double ()` đơn giản, chỉ đơn giản là nhân bất kỳ giá trị nào được truyền vào với 2:
 
-What if we want to operate on targets in a game to double the number of points they award? All we have to do is make a subtle change to the `double()` function that we pass into `map()`, and everything still works:
+Điều gì sẽ xảy ra nếu chúng ta muốn hoạt động trên các mục tiêu trong một trò chơi để tăng gấp đôi số điểm mà họ giành được? Tất cả những gì chúng ta phải làm là tạo ra một thay đổi tinh tế cho hàm `double ()` mà chúng ta truyền vào hàm `map ()`, và mọi thứ vẫn hoạt động:
 
-The concept of using abstractions like functors & higher order functions in order to use generic utility functions to manipulate any number of different data types is important in functional programming. You'll see a similar concept applied in [all sorts of different ways][9].
+Khái niệm sử dụng các phép trừu tượng như hàm functors và các hàm bậc cao hơn để sử dụng các hàm tiện ích chung để thao tác với bất kỳ số lượng các kiểu dữ liệu khác nhau nào là quan trọng trong lập trình hướng chức năng. Bạn sẽ thấy một khái niệm tương tự được áp dụng trong [tất cả các cách khác nhau] [9].
 
 > "A list expressed over time is a stream."
 
@@ -140,71 +141,41 @@ All you need to understand for now is that arrays and functors are not the only 
 
 ### Declarative vs Imperative
 
-Functional programming is a declarative paradigm, meaning that the program logic is expressed without explicitly describing the flow control.
+Lập trình hướng chức năng là một mô hình declarative, có nghĩa là logic chương trình được biểu diễn mà không mô tả rõ ràng điều khiển luồng.
 
-**Imperative** programs spend lines of code describing the specific steps used to achieve the desired results — the **flow control: How** to do things.
+Các chương trình **Imperative** sử dụng các dòng code mô tả các bước cụ thể được sử dụng để đạt được kết quả mong muốn - điều khiển luồng **:Làm thế nào để làm việc**.
 
-**Declarative** programs abstract the flow control process, and instead spend lines of code describing the **data flow: What** to do. The _how_ gets abstracted away.
+Các chương trình **Declarative** trừu tượng quá trình kiểm soát luồng, và thay vào đó chi tiêu các dòng mã mô tả **luồng dữ liệu: Phải làm gì**. Làm thế nào để được trừu tượng đi.
 
-For example, this **imperative** mapping takes an array of numbers and returns a new array with each number multiplied by 2:
+Ví dụ, ánh xạ **Imperative** này lấy một mảng các số và trả về một mảng mới với mỗi số nhân với 2:
 
-Imperative data mapping
 
-This **declarative** mapping does the same thing, but abstracts the flow control away using the functional `Array.prototype.map()` utility, which allows you to more clearly express the flow of data:
+Ánh xạ ** Declarative ** này cũng làm điều tương tự, nhưng tóm tắt điều khiển luồng bằng cách sử dụng tiện ích hàm `Array.prototype.map()`, cho phép bạn thể hiện rõ ràng luồng dữ liệu:
 
-**Imperative** code frequently utilizes statements. A **statement** is a piece of code which performs some action. Examples of commonly used statements include `for`, `if`, `switch`, `throw`, etc…
+Code **Imperative** thường xuyên sử dụng các câu lệnh. **Câu lệnh** là một đoạn code thực hiện một số hành động. Ví dụ về các câu lệnh thường được sử dụng bao gồm `for`,`if`, `switch`,`throw`, v.v ...
 
-**Declarative** code relies more on expressions. An **expression** is a piece of code which evaluates to some value. Expressions are usually some combination of function calls, values, and operators which are evaluated to produce the resulting value.
+**Declarative** dựa nhiều hơn vào biểu thức. **Biểu thức** là một đoạn mã đánh giá một số giá trị. Biểu thức thường là một số kết hợp của các cuộc gọi hàm, giá trị và toán tử được đánh giá để tạo ra giá trị kết quả.
 
-These are all examples of expressions:
+Đây là tất cả các ví dụ về các biểu thức:
     
     
     2 * 2  
     doubleMap([2, 3, 4])  
     Math.max(4, 3, 2)
 
-Usually in code, you'll see expressions being assigned to an identifier, returned from functions, or passed into a function. Before being assigned, returned, or passed, the expression is first evaluated, and the resulting value is used.
+Thông thường trong mã, bạn sẽ thấy các biểu thức được gán cho một mã định danh, được trả về từ các hàm, hoặc được chuyển vào một hàm. Trước khi được chỉ định, trả về hoặc được thông qua, biểu thức được đánh giá đầu tiên và giá trị kết quả được sử dụng.
 
-### Conclusion
+### Phần kết luận
 
-Functional programming favors:
+Các dấu hiệu của lập trình hướng chức năng
 
-* Pure functions instead of shared state & side effects
-* Immutability over mutable data
-* Function composition over imperative flow control
-* Lots of generic, reusable utilities that use higher order functions to act on many data types instead of methods that only operate on their colocated data
-* Declarative rather than imperative code (what to do, rather than how to do it)
-* Expressions over statements
-* Containers & higher order functions over ad-hoc polymorphism
+* Các hàm thuần túy thay vì các ảnh hưởng phụ và trạng thái được chia sẻ
+* Tính bất biến trên dữ liệu thay đổi
+* Thành phần chức năng trên điều khiển lưu lượng bắt buộc
+* Rất nhiều tiện ích chung, có thể tái sử dụng sử dụng các hàm bậc cao hơn để hành động trên nhiều loại dữ liệu thay vì các phương thức chỉ hoạt động trên dữ liệu được phân bổ của chúng
+* Declarative chứ không phải là code bắt buộc (phải làm gì, hơn là làm thế nào để làm điều đó)
+* Biểu thức trên báo cáo
+* Các hàm chứa và hàm bậc cao hơn là tính đa hình
 
-### Homework
-
-Learn & practice this core group of functional array extras:
-
-Use map to transform the following array of values into an array of item names:
-
-Use filter to select the items where points are greater than or equal to 3:
-
-Use reduce to sum the points:
-
-#### Explore the Series
-
-### Level Up Your Skills
-
-[Learn JavaScript with Eric Elliott][10]. If you're not a member, you're missing out!
-
-![][11]
-
-[1]: https://cdn-images-1.medium.com/max/1600/1*1OxglOpkZHLITbIKEVCy2g.jpeg
-[2]: https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976
-[3]: https://medium.com/javascript-scene/master-the-javascript-interview-what-is-function-composition-20dfb109a1a0
-[4]: https://medium.com/javascript-scene/10-tips-for-better-redux-architecture-69250425af44
-[5]: https://medium.com/javascript-scene/the-dao-of-immutability-9f91a70c88cd
-[6]: https://github.com/facebook/immutable-js
-[7]: https://github.com/swannodette/mori
-[8]: https://en.wikipedia.org/wiki/Monad_%28functional_programming%29
-[9]: https://github.com/fantasyland/fantasy-land
-[10]: http://ericelliottjs.com/product/lifetime-access-pass/
-[11]: https://cdn-images-1.medium.com/max/1600/1*3njisYUeHOdyLCGZ8czt_w.jpeg
 
   
