@@ -9,9 +9,9 @@ Cấu trúc Synth — Orihaus (CC BY 2.0)
 
 > "Làm chủ cuộc phỏng vấn JavaScript" là một loạt các bài viết được thiết kế để chuẩn bị cho các ứng cử viên các câu hỏi phổ biến mà họ có khả năng gặp phải khi ứng tuyển vị trí JavaScript từ level mid đến senior-level. Đây là những câu hỏi tôi thường xuyên sử dụng trong các cuộc phỏng vấn thực tế.
 
-Lập trình hướng chức năng đã trở thành một chủ đề thực sự nóng trong thế giới JavaScript. Chỉ vài năm trước, vài lập trình viên JavaScript đã biết lập trình hướng chức năng là gì, nhưng tất cả codebase của ứng dụng lớn mà tôi đã thấy trong 3 năm qua đều sử dụng nhiều ý tưởng lập trình hướng chức năng.
+Lập trình hướng chức năng đã trở thành một chủ đề thực sự nóng trong thế giới JavaScript. Chỉ vài năm trước, chỉ có 1 vài lập trình viên JavaScript đã biết lập trình hướng chức năng là gì, nhưng tất cả codebase của ứng dụng lớn mà tôi đã thấy trong 3 năm qua đều sử dụng nhiều ý tưởng lập trình hướng chức năng.
 
-**Lập trình hướng chức năng** (thường được viết tắt là FP) là quá trình xây dựng phần mềm bằng cách tạo **hàm thuần túy**, tránh **trạng thái chia sẻ,** **dữ liệu có thể thay đổi,** và **tác dụng phụ**. Lập trình hướng chức năng là **declarative** thay vì **imperative**, và trạng thái ứng dụng truyền qua các hàm thuần túy. Tương phản với lập trình hướng đối tượng, nơi mà trạng thái ứng dụng thường được chia sẻ và được colocated với các phương thức trong đối tượng.
+**Lập trình hướng chức năng** (thường được viết tắt là FP) là quá trình xây dựng phần mềm bằng cách tạo **hàm thuần túy**, tránh **trạng thái chia sẻ,** **dữ liệu có thể thay đổi,** và **tác dụng phụ**. Lập trình hướng chức năng là **declarative** thay vì **imperative**, và trạng thái ứng dụng truyền qua các hàm thuần túy. Tương phản với lập trình hướng đối tượng, nơi mà trạng thái ứng dụng thường được chia sẻ và được đặt chung với các phương thức trong đối tượng.
 
 Lập trình hướng chức năng là **một mô hình lập trình**, có nghĩa rằng nó là một cách suy nghĩ về xây dựng phần mềm dựa trên một số nguyên tắc cơ bản, xác định (được liệt kê ở trên). Các ví dụ khác về mô hình lập trình bao gồm lập trình hướng đối tượng và lập trình hướng thủ tục.
 
@@ -20,7 +20,7 @@ Code hướng chức năng có xu hướng ngắn gọn hơn, dễ dự đoán h
 Nếu bạn bắt đầu tra google thuật ngữ lập trình hướng chức năng, bạn sẽ nhanh chóng gặp phải các trở ngại của một bức tường của ngôn ngữ học thuật có thể rất đáng sợ cho người mới bắt đầu. Nói rằng nó có một đường cong học tập là nói dối. Nhưng nếu bạn đã lập trình JavaScript trong một thời gian, rất có thể là bạn đã sử dụng rất nhiều khái niệm và tiện ích lập trình hướng chức năng trong phần mềm thực têd của bạn.
 > Đừng để tất cả những từ ngữ mới làm bạn sợ hãi. Nó dễ hơn rất nhiều .
 
-Phần khó nhất là bạn luôn bị bao vây bởi các từ ngữ không quen thuộc. Có rất nhiều ý tưởng trong định nghĩa trong sáng ở trên mà tất cả mọi thứ cần phải được hiểu trước khi bạn có thể bắt đầu nắm bắt ý nghĩa của lập trình hướng chức nămh:
+Phần khó nhất là bạn luôn bị bao vây bởi các từ ngữ không quen thuộc. Có rất nhiều ý tưởng trong định nghĩa trong sáng ở trên mà tất cả mọi thứ cần phải được hiểu trước khi bạn có thể bắt đầu nắm bắt ý nghĩa của lập trình hướng chức năng:
 
 * Pure functions
 * Function composition
@@ -30,11 +30,11 @@ Phần khó nhất là bạn luôn bị bao vây bởi các từ ngữ không qu
 
 Nói cách khác, nếu bạn muốn biết ý nghĩa  lập trình hướng chức năng trong thực tế, bạn phải bắt đầu với một sự hiểu biết về những khái niệm cốt lõi đó.
 
-A **pure function** là một hàm mà:
+1 **pure function** là một hàm mà:
 * Với cùng các yếu tố đầu vào, luôn trả về cùng một đầu ra
 * Không bị ảnh hướng bên ngoài
 
-Các hàm thuần túy có rất nhiều thuộc tính quan trọng trong lập trình huowngcs chức năng, bao gồm **tính minh bạch tham chiếu** (bạn có thể thay thế một hàm gọi với giá trị kết quả của nó mà không thay đổi ý nghĩa của chương trình). Đọc ["Chức năng thuần túy là gì?"] [2] để biết thêm chi tiết.
+Các hàm thuần túy có rất nhiều thuộc tính quan trọng trong lập trình hướng chức năng, bao gồm **tính minh bạch tham chiếu** (bạn có thể thay thế một hàm gọi với giá trị kết quả của nó mà không thay đổi ý nghĩa của chương trình). Đọc ["Chức năng thuần túy là gì?"] [2] để biết thêm chi tiết.
 
 **Function composition** là quá trình kết hợp hai hoặc nhiều chức năng để tạo ra một chức năng mới hoặc thực hiện một số tính toán. Ví dụ, thành phần `f. g` (dấu chấm có nghĩa là "hợp với") tương đương với `f (g (x))` trong JavaScript. Hiểu biết về function composition là một bước quan trọng hướng tới sự hiểu biết cách phần mềm được xây dựng bằng cách sử dụng lập trình hướng chức năng. Đọc ["Thành phần chức năng là gì?"] [3] để biết thêm.
 
@@ -60,7 +60,7 @@ Trong ví dụ trên, chúng ta sử dụng `Object.assign ()` và truyền vào
 
 Nếu bạn xem xét kỹ các câu lệnh `console.log ()` trong ví dụ này, bạn sẽ thấy một cái gì đó mà tôi đã đề cập: function composition. Nhớ lại từ trước, thành phần hàm trông giống như sau: `f (g (x))`. Trong trường hợp này, chúng ta thay thế `f ()` và `g ()` bằng `x1 ()` và `x2 ()` cho thành phần: `x1. x2`.
 
-Tất nhiên, nếu bạn thay đổi thứ tự của composition, đầu ra sẽ thay đổi. Thứ tự của các hoạt động vẫn còn quan trọng. `f (g (x))` không phải lúc nào cũng bằng `g (f (x))`, nhưng những gì không quan trọng nữa là những gì xảy ra với các biến bên ngoài hàm - và đó là một vấn đề lớn. Với hàm số không tinh khiết, bạn không thể hiểu đầy đủ chức năng của một hàm trừ khi bạn biết toàn bộ lịch sử của mọi biến mà hàm sử dụng hoặc ảnh hưởng.
+Tất nhiên, nếu bạn thay đổi thứ tự của composition, đầu ra sẽ thay đổi. Thứ tự của các hoạt động vẫn còn quan trọng. `f (g (x))` không phải lúc nào cũng bằng `g (f (x))`, nhưng những gì không ảnh hưởng nữa là những gì xảy ra với các biến bên ngoài hàm - và đó là một trao đổi lớn. Với hàm số không tinh khiết, bạn không thể hiểu đầy đủ chức năng của một hàm trừ khi bạn biết toàn bộ lịch sử của mọi biến mà hàm sử dụng hoặc ảnh hưởng.
 
 Loại bỏ phụ thuộc thời gian lời gọi hàm và bạn sẽ loại bỏ toàn bộ lớp lỗi tiềm ẩn.
 
@@ -137,7 +137,7 @@ Khái niệm sử dụng các phép trừu tượng như hàm functors và các 
 
 > "A list expressed over time is a stream."
 
-All you need to understand for now is that arrays and functors are not the only way this concept of containers and values in containers applies. For example, an array is just a list of things. A list expressed over time is a stream — so you can apply the same kinds of utilities to process streams of incoming events — something that you'll see a lot when you start building real software with FP.
+Tất cả những gì bạn cần hiểu bây giờ là mảng và functors không phải là cách duy nhất khái niệm container và giá trị trong các container được áp dụng. Ví dụ, một mảng chỉ là một danh sách các thứ. Danh sách được thể hiện theo thời gian là luồng - vì vậy bạn có thể áp dụng cùng một loại tiện ích để xử lý luồng sự kiện đến - thứ mà bạn sẽ thấy rất nhiều khi bạn bắt đầu xây dựng phần mềm thực với FP.
 
 ### Declarative vs Imperative
 
