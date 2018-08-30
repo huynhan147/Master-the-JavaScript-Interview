@@ -7,17 +7,17 @@
 
 Cấu trúc Synth — Orihaus (CC BY 2.0)
 
-> "Làm chủ cuộc phỏng vấn JavaScript" là một loạt các bài viết được thiết kế để chuẩn bị cho các ứng cử viên các câu hỏi phổ biến mà họ có khả năng gặp phải khi ứng tuyển vị trí JavaScript từ level mid đến senior-level. Đây là những câu hỏi tôi thường xuyên sử dụng trong các cuộc phỏng vấn thực tế.
+> "Làm chủ cuộc phỏng vấn JavaScript" là một loạt các bài viết được thiết kế để chuẩn bị cho các ứng cử viên các câu hỏi phổ biến mà họ có khả năng gặp phải khi ứng tuyển vị trí JavaScript từ mid đến senior-level. Đây là những câu hỏi tôi thường xuyên sử dụng trong các cuộc phỏng vấn thực tế.
 
-Lập trình hướng chức năng đã trở thành một chủ đề thực sự nóng trong thế giới JavaScript. Chỉ vài năm trước, vài lập trình viên JavaScript đã biết lập trình hướng chức năng là gì, nhưng tất cả codebase của ứng dụng lớn mà tôi đã thấy trong 3 năm qua đều sử dụng nhiều ý tưởng lập trình hướng chức năng.
+Lập trình hướng chức năng đã trở thành một chủ đề thực sự nóng trong thế giới JavaScript. Chỉ vài năm trước,chỉ vài lập trình viên JavaScript biết lập trình hướng chức năng là gì, nhưng tất cả codebase của những ứng dụng lớn mà tôi đã thấy trong 3 năm qua đều sử dụng nhiều ý tưởng từ lập trình hướng chức năng.
 
 **Lập trình hướng chức năng** (thường được viết tắt là FP) là quá trình xây dựng phần mềm bằng cách tạo **hàm thuần túy**, tránh **trạng thái chia sẻ,** **dữ liệu có thể thay đổi,** và **tác dụng phụ**. Lập trình hướng chức năng là **declarative** thay vì **imperative**, và trạng thái ứng dụng truyền qua các hàm thuần túy. Tương phản với lập trình hướng đối tượng, nơi mà trạng thái ứng dụng thường được chia sẻ và được colocated với các phương thức trong đối tượng.
 
 Lập trình hướng chức năng là **một mô hình lập trình**, có nghĩa rằng nó là một cách suy nghĩ về xây dựng phần mềm dựa trên một số nguyên tắc cơ bản, xác định (được liệt kê ở trên). Các ví dụ khác về mô hình lập trình bao gồm lập trình hướng đối tượng và lập trình hướng thủ tục.
 
-Code hướng chức năng có xu hướng ngắn gọn hơn, dễ dự đoán hơn và dễ kiểm tra hơn code imperative hoặc đối tượng - nhưng nếu bạn không quen với nó và các mẫu phổ biến liên quan đến nó, code hướng chức năng cũng có thể dày đặc hơn và tài liệu liên quan có thể khó học đối với người mới.
+Code hướng chức năng có xu hướng ngắn gọn hơn, dễ dự đoán hơn và dễ kiểm tra hơn code imperative hoặc đối tượng - nhưng nếu bạn không quen với nó và các pattern phổ biến liên quan đến nó, code hướng chức năng cũng có thể dày đặc hơn và tài liệu liên quan có thể khó học đối với người mới.
 
-Nếu bạn bắt đầu tra google thuật ngữ lập trình hướng chức năng, bạn sẽ nhanh chóng gặp phải các trở ngại của một bức tường của ngôn ngữ học thuật có thể rất đáng sợ cho người mới bắt đầu. Nói rằng nó có một đường cong học tập là nói dối. Nhưng nếu bạn đã lập trình JavaScript trong một thời gian, rất có thể là bạn đã sử dụng rất nhiều khái niệm và tiện ích lập trình hướng chức năng trong phần mềm thực têd của bạn.
+Nếu bạn bắt đầu tra google thuật ngữ lập trình hướng chức năng, bạn sẽ nhanh chóng gặp phải các trở ngại của một bức tường của ngôn ngữ học thuật có thể rất đáng sợ cho người mới bắt đầu. Nói rằng nó có một đường cong học tập là nói dối. Nhưng nếu bạn đã lập trình JavaScript trong một thời gian, rất có thể là bạn đã sử dụng rất nhiều khái niệm và tiện ích lập trình hướng chức năng trong phần mềm thực tế của bạn.
 > Đừng để tất cả những từ ngữ mới làm bạn sợ hãi. Nó dễ hơn rất nhiều .
 
 Phần khó nhất là bạn luôn bị bao vây bởi các từ ngữ không quen thuộc. Có rất nhiều ý tưởng trong định nghĩa trong sáng ở trên mà tất cả mọi thứ cần phải được hiểu trước khi bạn có thể bắt đầu nắm bắt ý nghĩa của lập trình hướng chức nămh:
@@ -34,7 +34,7 @@ A **pure function** là một hàm mà:
 * Với cùng các yếu tố đầu vào, luôn trả về cùng một đầu ra
 * Không bị ảnh hướng bên ngoài
 
-Các hàm thuần túy có rất nhiều thuộc tính quan trọng trong lập trình huowngcs chức năng, bao gồm **tính minh bạch tham chiếu** (bạn có thể thay thế một hàm gọi với giá trị kết quả của nó mà không thay đổi ý nghĩa của chương trình). Đọc ["Chức năng thuần túy là gì?"] [2] để biết thêm chi tiết.
+Các hàm thuần túy có rất nhiều thuộc tính quan trọng trong lập trình hướng chức năng, bao gồm **tính minh bạch tham chiếu** (bạn có thể thay thế một hàm gọi với giá trị kết quả của nó mà không thay đổi ý nghĩa của chương trình). Đọc ["Chức năng thuần túy là gì?"] [2] để biết thêm chi tiết.
 
 **Function composition** là quá trình kết hợp hai hoặc nhiều chức năng để tạo ra một chức năng mới hoặc thực hiện một số tính toán. Ví dụ, thành phần `f. g` (dấu chấm có nghĩa là "hợp với") tương đương với `f (g (x))` trong JavaScript. Hiểu biết về function composition là một bước quan trọng hướng tới sự hiểu biết cách phần mềm được xây dựng bằng cách sử dụng lập trình hướng chức năng. Đọc ["Thành phần chức năng là gì?"] [3] để biết thêm.
 
